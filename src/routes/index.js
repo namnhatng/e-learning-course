@@ -14,7 +14,7 @@ router.post('/v1/api/courses', courseController.createCourse)
 router.get('/v1/api/lectures/:courseId', lectureController.getListLecture)
 router.post('/v1/api/lectures', lectureController.createLecture)
 
-router.get('/v1/api/users/:userId', userController.getUser)
+router.get('/v1/api/users/:userName', userController.getUser)
 router.get('/v1/api/users', userController.getListUser)
 router.post('/v1/api/users', userController.createUser)
 

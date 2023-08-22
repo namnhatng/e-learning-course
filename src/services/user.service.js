@@ -43,6 +43,7 @@ class UserService {
     }
 
     static getUser = async (userName) => {
+        console.log(userName)
         const user = await userModel.findOne({ userName }).exec()
         return {
             code: 0,

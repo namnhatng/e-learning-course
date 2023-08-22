@@ -15,7 +15,7 @@ class UserController {
 
     createUser = async ( req, res, next) => {
         try {
-            return res.status(200).json(await UserService.createCourse(req.body))
+            return res.status(200).json(await UserService.createUser(req.body))
         } catch (error) {
             next(error)
         }
@@ -24,7 +24,7 @@ class UserController {
     getUser = async ( req, res, next) => {
         try {
             const { userName } = req.params
-            return res.status(200).json(await UserService.getCourse(userName))
+            return res.status(200).json(await UserService.getUser(userName))
         } catch (error) {
             
         }
