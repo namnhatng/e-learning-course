@@ -1,0 +1,17 @@
+### get list course
+
+GET http://localhost:3052/v1/api/courses
+
+### create course
+
+POST http://localhost:3052/v1/api/courses
+Content-Type: application/json
+
+{
+    "name": "do an",
+    "code": "12341234132",
+    "desc": "hay la minh cu bat cham het"
+}
+
+### get 1 course
+GET http://localhost:3052/v1/api/courses/int3315
