@@ -21,6 +21,10 @@ const lectureSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    link:{
+        type:String,
+        require:true,
+    },
     courseId:{
         type:String,
         required:true,

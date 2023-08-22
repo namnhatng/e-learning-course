@@ -1,6 +1,10 @@
 ### get list lecture
 
-GET http://localhost:3052/v1/api/lectures/int3315
+GET http://localhost:3052/v1/api/lectures/int1234
+
+### get one lecture
+
+GET http://localhost:3052/v1/api/lecture/int1234_01
 
 ### create lecture
 

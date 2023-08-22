@@ -28,8 +28,8 @@ class LectureService {
         }
     }
 
-    static getCourse = async (courseId) => {
-        const course = await lectureModel.findOne({ code: courseId }).exec()
+    static getLecture = async (lectureId) => {
+        const course = await lectureModel.findOne({ code: lectureId }).exec()
         return {
             code: 0,
             message: 'data success',

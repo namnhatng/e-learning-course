@@ -16,16 +16,24 @@ class LectureController {
 
     createLecture = async ( req, res, next) => {
         try {
-            return res.status(200).json(await LectureService.createLecture(req.body))
+            const uploadFile = req.files.file
+            console.log('test1');
+            await uploadFile.mv(`public/${req.body.code}.pdf`)
+            console.log('test2');
+            return res.json(req.body)
+            // return res.status(200).json(await LectureService.createLecture({
+            //     ...req.body,
+            //     link: `/public/${req.body.code}.pdf`,
+            // }))
         } catch (error) {
             next(error)
         }
     }
 
-    getCourse = async ( req, res, next) => {
+    getLecture = async ( req, res, next) => {
         try {
-            const { courseId } = req.params
-            return res.status(200).json(await LectureService.getCourse(courseId))
+            const { lectureId } = req.params
+            return res.status(200).json(await LectureService.getLecture(lectureId))
         } catch (error) {
             
         }
