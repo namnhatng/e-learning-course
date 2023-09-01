@@ -4,9 +4,9 @@ const lectureModel = require("../models/lecture.model")
 
 class LectureService {
 
-    static getListLecture = async (courseId) => {
+    static getListLecture = async (courseCode) => {
         try {
-            const lectures = await lectureModel.find({ courseId }).lean()
+            const lectures = await lectureModel.find({ courseId: courseCode }).lean()
             return {
                 code: 0,
                 message: 'data success',
@@ -28,12 +28,12 @@ class LectureService {
         }
     }
 
-    static getLecture = async (lectureId) => {
-        const course = await lectureModel.findOne({ code: lectureId }).exec()
+    static getLecture = async (lectureCode) => {
+        const lecture = await lectureModel.findOne({ code: lectureCode }).exec()
         return {
             code: 0,
             message: 'data success',
-            reponse: course,
+            reponse: lecture,
         }
     }
 }

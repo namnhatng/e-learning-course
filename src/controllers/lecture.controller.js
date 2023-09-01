@@ -16,10 +16,15 @@ class LectureController {
 
     createLecture = async ( req, res, next) => {
         try {
+            if (req.user.role === 'STUDENT') {
+                return res.status(401).json({
+                    code: 'xxx',
+                    message: 'khong duoc phep',
+                })
+            }
             const uploadFile = req.files.file
-            console.log('test1');
-            await uploadFile.mv(`public/${req.body.code}.pdf`)
-            console.log('test2');
+            const fileExt = uploadFile.name.split('.')[1]
+            await uploadFile.mv(`public/${req.body.code}.${fileExt}`)
             return res.json(req.body)
             // return res.status(200).json(await LectureService.createLecture({
             //     ...req.body,

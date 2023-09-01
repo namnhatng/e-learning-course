@@ -15,6 +15,12 @@ class CourseController {
 
     createCourse = async ( req, res, next) => {
         try {
+            if (req.user.role === 'STUDENT') {
+                return res.status(401).json({
+                    code: 'xxx',
+                    message: 'khong duoc phep',
+                })
+            }
             return res.status(200).json(await CourseService.createCourse(req.body))
         } catch (error) {
             next(error)

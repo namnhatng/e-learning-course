@@ -25,7 +25,7 @@ const lectureSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
-    courseId:{
+    courseCode:{
         type:String,
         required:true,
     },

@@ -4,6 +4,7 @@
 const userModel = require("../models/user.model")
 const bcrypt = require('bcrypt')
 const crypto = require("crypto")
+const jwt = require('jsonwebtoken')
 const KeyTokenService = require("./keyToken.service")
 const { createTokenPair } = require("../auth/authUtils")
 const { getInfoData } = require('../utils')
@@ -95,6 +96,45 @@ class AccessService {
                 code: 'xxxthis',
                 message: error.message,
                 status: 'error',
+            }
+        }
+    }
+
+    static logIn = async (userName, password) => {
+        const user = await userModel.findOne({ userName })
+        if (!user) {
+            return {
+                code: 'xxx',
+                message: 'username khong dung'
+            }
+        }
+        // const validPassowrd = await bcrypt.compare(password, user.password)
+        // if (!validPassowrd) {
+        //     return {
+        //         code: 'xxx',
+        //         message: 'wrong password'
+        //     }
+        // }
+        if (password !== user.password) {
+            return {
+                code: 'xxx',
+                message: 'wrong password',
+            }
+        }
+        const accessToken = jwt.sign(
+            {
+                userName: user.userName,
+                role: user.role,
+            },
+            process.env.SECRET_KEY,
+            { expiresIn: '3600s' },
+        )
+        return {
+            code: 'xxx',
+            message: 'login success',
+            data: {
+                accessToken,
+                role: user.role,
             }
         }
     }

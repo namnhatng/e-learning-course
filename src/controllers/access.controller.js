@@ -1,6 +1,7 @@
 'use strict'
 
 const AccessService = require("../services/access.service")
+const jwt = require('jsonwebtoken')
 
 class AccessController {
 
@@ -11,6 +12,11 @@ class AccessController {
         } catch (error) {
             next(error)
         }
+    }
+
+    logIn = async ( req, res, next) => {
+        const { userName, password } = req.body
+        return res.status(200).json(await AccessService.logIn(userName, password))
     }
 }
 

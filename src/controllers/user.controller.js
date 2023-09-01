@@ -15,6 +15,12 @@ class UserController {
 
     createUser = async ( req, res, next) => {
         try {
+            if (req.user.role !== 'ADMIN') {
+                return res.status(401).json({
+                    code: 'xxx',
+                    message: 'khong duoc phep',
+                })
+            }
             return res.status(200).json(await UserService.createUser(req.body))
         } catch (error) {
             next(error)
