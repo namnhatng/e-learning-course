@@ -20,11 +20,19 @@ class LectureService {
     }
 
     static createLecture = async (lecture) => {
-        const createdLecture = await lectureModel.create(lecture)
-        return {
-            code: 0,
-            message: 'data success',
-            reponse: createdLecture,
+        try {
+            const createdLecture = await lectureModel.create(lecture)
+            return {
+                code: 0,
+                message: 'data success',
+                reponse: createdLecture,
+            }
+        } catch (error) {
+            return {
+                code: 0,
+                message: 'error',
+                response: error.message,
+            }
         }
     }
 

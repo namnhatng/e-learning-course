@@ -25,11 +25,11 @@ class LectureController {
             const uploadFile = req.files.file
             const fileExt = uploadFile.name.split('.')[1]
             await uploadFile.mv(`public/${req.body.code}.${fileExt}`)
-            return res.json(req.body)
-            // return res.status(200).json(await LectureService.createLecture({
-            //     ...req.body,
-            //     link: `/public/${req.body.code}.pdf`,
-            // }))
+            return res.status(200).json(await LectureService.createLecture({
+                ...req.body,
+                courseCode: req.body.courseId,
+                link: `/public/${req.body.code}.${fileExt}`,
+            }))
         } catch (error) {
             next(error)
         }
